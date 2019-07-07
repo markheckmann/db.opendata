@@ -1,0 +1,19 @@
+Package: db.opendata
+Type: Package
+Title: Query DB Opendata APIs
+Version: 0.1.0
+Authors@R: person("Mark", "Heckmann", email = "heckmann.mark@gmail.com", role = c("aut", "cre"))
+Description: Functions to query the Deutsche Bahn Opendata APIs and structure the data
+License: GPL >= 3
+Encoding: UTF-8
+LazyData: true
+Imports:
+  httr
+  ,tidyverse
+  ,htmltools
+  ,lubridate
+  ,data.table
+  ,keyring
+  ,jsonlite
+  ,magrittr
+RoxygenNote: 6.1.1
