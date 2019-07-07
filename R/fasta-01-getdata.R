@@ -130,3 +130,34 @@ append_log <- function(x, file = "fasta_log.csv")
 }
 
 
+
+# encode each changed value with new running index
+encode_changes <- function(x)
+{
+  r <- rle(x)
+  rep(seq_along(r$values), r$lengths)
+}
+
+
+#' Keep data poits where state changes occur
+#'
+#' @param  dt dataframe from \code{clean_fasta_data}.
+#' @export
+#
+keep_state_changes <- function(dt, change_index = FALSE)
+{
+  setDT(dt)
+  dt <- dt[order(equipmentnumber, datetime)]                      # sort by equi and time
+  dt[, change_index := encode_changes(state), "equipmentnumber"]  # add change index
+  dt <- dt[, .SD[1], by = c("equipmentnumber", "change_index")]   # select first value after change
+
+  # delete change index if not prompted
+  if (!change_index) {
+    dt$change_index <- NULL
+  }
+  dt
+}
+
+
+
+
