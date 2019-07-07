@@ -26,9 +26,9 @@ for (i in ii) {
   append_data(df, file = "fasta_data_cleaned.csv")
 
   # clean data and keep change of state only
-  dt <- fread("fasta_data_cleaned.csv")
-  dt <- keep_state_changes(dt)
-  fwrite(dt, "fasta_data_cleaned.csv")
+  fread("fasta_data_cleaned.csv") %>%
+    keep_state_changes(dt) %>%
+    fwrite("fasta_data_cleaned.csv")
 
   nw <- now()
   cat("\nFaSta API Request: ", as.character(nw),
