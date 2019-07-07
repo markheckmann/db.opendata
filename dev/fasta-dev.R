@@ -14,7 +14,7 @@ library(data.table)
 
 # each x minutes
 interval_in_min <- 2
-ii <- seq(1:(60/wait_min * 24))
+ii <- seq(1:(60/interval_in_min * 24))
 
 for (i in ii) {
 
