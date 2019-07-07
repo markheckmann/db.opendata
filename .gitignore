@@ -3,3 +3,5 @@
 .RData
 .Ruserdata
 db.opendata.Rproj
+dev/fasta_data.csv
+dev/fasta_log.csv
