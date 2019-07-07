@@ -11,8 +11,11 @@ library(httr)
 library(db.opendata)
 library(data.table)
 
+# each x minutes
+wait_min <- 2
+ii <- seq(1:(60/wait_min * 24))
 
-for (i in 1:(60 * 1)) {
+for (i in ii) {
 
   x <- retrieve_fasta_data()
   log <- x %>% create_fasta_log()
@@ -25,7 +28,8 @@ for (i in 1:(60 * 1)) {
       "Status:", status_code(x$response))
 
   # wait until end of minute
-  wait <- ceiling_date(nw, unit = "minute") - nw
+  wait <- difftime(ceiling_date(nw, unit = "minute") + minutes(wait_min - 1),
+                   nw, units = "secs")
 
   Sys.sleep(wait)
 
